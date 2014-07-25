@@ -55,6 +55,48 @@ function issue_features_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-issue-field_issue_archivos'
+  $field_instances['node-issue-field_issue_archivos'] = array(
+    'bundle' => 'issue',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'file',
+        'settings' => array(),
+        'type' => 'file_default',
+        'weight' => 6,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_issue_archivos',
+    'label' => 'Archivos',
+    'required' => 0,
+    'settings' => array(
+      'description_field' => 1,
+      'file_directory' => '',
+      'file_extensions' => 'txt pdf doc docx png jpg jpeg',
+      'max_filesize' => '1 MB',
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'file',
+      'settings' => array(
+        'progress_indicator' => 'throbber',
+      ),
+      'type' => 'file_generic',
+      'weight' => 4,
+    ),
+  );
+
   // Exported field_instance: 'node-issue-field_issue_categoria'
   $field_instances['node-issue-field_issue_categoria'] = array(
     'bundle' => 'issue',
@@ -228,6 +270,43 @@ function issue_features_field_default_field_instances() {
     ),
   );
 
+  // Exported field_instance: 'node-issue-field_issues_tipo'
+  $field_instances['node-issue-field_issues_tipo'] = array(
+    'bundle' => 'issue',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 7,
+      ),
+      'teaser' => array(
+        'label' => 'above',
+        'settings' => array(),
+        'type' => 'hidden',
+        'weight' => 0,
+      ),
+    ),
+    'entity_type' => 'node',
+    'field_name' => 'field_issues_tipo',
+    'label' => 'Tipo',
+    'required' => 1,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_select',
+      'weight' => 5,
+    ),
+  );
+
   // Exported field_instance: 'node-proyecto-body'
   $field_instances['node-proyecto-body'] = array(
     'bundle' => 'proyecto',
@@ -382,6 +461,7 @@ function issue_features_field_default_field_instances() {
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('Archivos');
   t('Body');
   t('Categoria');
   t('Estado');
@@ -390,6 +470,7 @@ function issue_features_field_default_field_instances() {
   t('Link');
   t('Proyecto');
   t('Responsable');
+  t('Tipo');
 
   return $field_instances;
 }
