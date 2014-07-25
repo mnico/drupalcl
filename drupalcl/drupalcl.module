@@ -1,0 +1,46 @@
+<?php
+
+
+
+/**
+ * Implements hook_menu_alter().
+ */
+function drupalcl_menu_alter(&$items) {
+  $items['node/%/issues']['access callback'] = 'drupalcl_access_node_proyect';
+  $items['node/%/issues']['access arguments'] = array(1);
+}
+
+
+/**
+ * Access callback.
+ */
+function drupalcl_access_node_proyect($nid) {
+  if (is_numeric($nid) && ($node = node_load($nid))) {
+    if ($node->type == 'proyecto') {
+      return TRUE;
+    }
+  }
+
+  return FALSE;
+}
+
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function drupalcl_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'menu_alter') {
+    $module = $implementations['drupalcl'];
+    unset($implementations['drupalcl']);
+    $implementations['drupalcl'] = $module;
+  }
+}
+
+
+function drupalcl_views_api() {
+  return array(
+    'api' => 3,
+    'path' => drupal_get_path('module', 'drupalcl') . '/views',
+  );
+}
+
