@@ -45,5 +45,23 @@ function issue_features_default_rules_configuration() {
       ]
     }
   }');
+  $items['rules_seguir_un_issue_al_crearlo'] = entity_import('rules_config', '{ "rules_seguir_un_issue_al_crearlo" : {
+      "LABEL" : "Seguir un Issue al crearlo",
+      "PLUGIN" : "reaction rule",
+      "OWNER" : "rules",
+      "TAGS" : [ "Issue" ],
+      "REQUIRES" : [ "flag", "rules" ],
+      "ON" : { "node_insert--issue" : { "bundle" : "issue" } },
+      "DO" : [
+        { "flag_flagnode" : {
+            "flag" : "subscripcion_issue",
+            "node" : [ "node" ],
+            "flagging_user" : [ "node:author" ],
+            "permission_check" : 0
+          }
+        }
+      ]
+    }
+  }');
   return $items;
 }
