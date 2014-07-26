@@ -39,6 +39,7 @@ function issue_features_default_rules_configuration() {
             "emails" : [ "emails" ],
             "subject" : "[comment:name] ha realizado un comentario en el issue \\u0022[comment:node]\\u0022",
             "message" : "El usuario [comment:name] ha realizado un comentario en el Issue [comment:node]:\\r\\n\\r\\n\\u0022[comment:body]\\u0022\\r\\n\\r\\nPuede revisarlo ingresando aqu\\u00ed: [comment:url]",
+            "from" : [ "comment:author:mail" ],
             "language" : [ "" ]
           }
         }
