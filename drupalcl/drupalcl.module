@@ -37,10 +37,27 @@ function drupalcl_module_implements_alter(&$implementations, $hook) {
 }
 
 
+/**
+ * Implements hook_views_api().
+ */
 function drupalcl_views_api() {
   return array(
     'api' => 3,
     'path' => drupal_get_path('module', 'drupalcl') . '/views',
   );
 }
+
+
+function drupalcl_rules_action_send_mails($emails, $subject, $message, $from = NULL, $langcode, $settings, RulesState $state, RulesPlugin $element) {
+  $to = array_filter($emails, 'drupalcl_only_valid_email');
+
+  rules_action_mail(implode(',', $to), $subject, $message, $from, $langcode, $settings, $state, $element);
+}
+
+
+function drupalcl_only_valid_email($email) {
+  return (is_string($email) && valid_email_address($email));
+}
+
+
 
