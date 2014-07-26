@@ -22,7 +22,7 @@ function issue_features_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Issues Asignados';
+  $handler->display->display_options['title'] = '%1';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -337,6 +337,8 @@ function issue_features_views_default_views() {
   $handler->display->display_options['fields']['field_issue_responsable']['id'] = 'field_issue_responsable';
   $handler->display->display_options['fields']['field_issue_responsable']['table'] = 'field_data_field_issue_responsable';
   $handler->display->display_options['fields']['field_issue_responsable']['field'] = 'field_issue_responsable';
+  $handler->display->display_options['fields']['field_issue_responsable']['alter']['make_link'] = TRUE;
+  $handler->display->display_options['fields']['field_issue_responsable']['alter']['path'] = 'user/[field_issue_responsable-target_id]/issues-asignados';
   $handler->display->display_options['fields']['field_issue_responsable']['settings'] = array(
     'link' => 0,
   );
