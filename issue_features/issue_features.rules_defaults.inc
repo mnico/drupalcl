@@ -14,7 +14,7 @@ function issue_features_default_rules_configuration() {
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "TAGS" : [ "Issue" ],
-      "REQUIRES" : [ "flag", "rules", "comment" ],
+      "REQUIRES" : [ "flag", "rules", "drupalcl", "comment" ],
       "ON" : { "comment_insert--comment_node_issue" : { "bundle" : "comment_node_issue" } },
       "DO" : [
         { "flag_fetch_users_node" : {
@@ -22,18 +22,24 @@ function issue_features_default_rules_configuration() {
             "PROVIDE" : { "users" : { "users" : "Users who flagged" } }
           }
         },
+        { "variable_add" : {
+            "USING" : { "type" : "list\\u003Ctext\\u003E" },
+            "PROVIDE" : { "variable_added" : { "emails" : "Emails" } }
+          }
+        },
         { "LOOP" : {
             "USING" : { "list" : [ "users" ] },
             "ITEM" : { "list_item" : "Current list item" },
             "DO" : [
-              { "mail" : {
-                  "to" : [ "list-item:mail" ],
-                  "subject" : "Nuevo comentario al issue [comment:node]",
-                  "message" : "[comment:body]\\r\\n\\r\\nGG",
-                  "language" : [ "" ]
-                }
-              }
+              { "list_add" : { "list" : [ "emails" ], "item" : [ "list-item:mail" ], "unique" : 1 } }
             ]
+          }
+        },
+        { "drupalcl_send_mail" : {
+            "emails" : [ "emails" ],
+            "subject" : "[comment:name] ha realizado un comentario en el issue \\u0022[comment:node]\\u0022",
+            "message" : "El usuario [comment:name] ha realizado un comentario en el Issue [comment:node]:\\r\\n\\r\\n\\u0022[comment:body]\\u0022\\r\\n\\r\\nPuede revisarlo ingresando aqu\\u00ed: [comment:url]",
+            "language" : [ "" ]
           }
         }
       ]
