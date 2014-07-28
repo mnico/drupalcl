@@ -327,6 +327,10 @@ function issue_features_views_default_views() {
   $handler->display->display_options['fields']['field_issue_categoria']['field'] = 'field_issue_categoria';
   $handler->display->display_options['fields']['field_issue_categoria']['type'] = 'taxonomy_term_reference_plain';
   $handler->display->display_options['fields']['field_issue_categoria']['delta_offset'] = '0';
+  /* Field: Content: Tipo */
+  $handler->display->display_options['fields']['field_issues_tipo']['id'] = 'field_issues_tipo';
+  $handler->display->display_options['fields']['field_issues_tipo']['table'] = 'field_data_field_issues_tipo';
+  $handler->display->display_options['fields']['field_issues_tipo']['field'] = 'field_issues_tipo';
   /* Field: Content: Comment count */
   $handler->display->display_options['fields']['comment_count']['id'] = 'comment_count';
   $handler->display->display_options['fields']['comment_count']['table'] = 'node_comment_statistics';
