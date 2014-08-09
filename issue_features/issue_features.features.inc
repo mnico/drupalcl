@@ -74,7 +74,7 @@ function issue_features_node_info() {
       'base' => 'node_content',
       'description' => t('Issue de un proyecto.'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Título'),
       'help' => '',
     ),
     'proyecto' => array(
@@ -82,7 +82,7 @@ function issue_features_node_info() {
       'base' => 'node_content',
       'description' => t('Proyectos de módulos o temas de Drupal.'),
       'has_title' => '1',
-      'title_label' => t('Title'),
+      'title_label' => t('Título'),
       'help' => '',
     ),
   );
