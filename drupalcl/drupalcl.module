@@ -88,7 +88,7 @@ function drupalcl_rules_action_send_mails($emails, $subject, $message, $from = N
 
   $message = drupal_mail('drupalcl', 'bcc', $to, $language, $params, $from);
   if ($message['result']) {
-    watchdog('rules', 'Successfully sent email to %recipient', array('%recipient' => $to));
+    watchdog('rules', 'Successfully sent email to %recipient', array('%recipient' => $Bcc));
   }
 }
 

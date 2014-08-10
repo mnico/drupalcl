@@ -14,8 +14,11 @@ function issue_features_default_rules_configuration() {
       "PLUGIN" : "reaction rule",
       "OWNER" : "rules",
       "TAGS" : [ "Issue" ],
-      "REQUIRES" : [ "flag", "rules", "drupalcl", "comment" ],
+      "REQUIRES" : [ "rules", "flag", "drupalcl", "comment" ],
       "ON" : { "comment_insert--comment_node_issue" : { "bundle" : "comment_node_issue" } },
+      "IF" : [
+        { "entity_has_field" : { "entity" : [ "comment:node" ], "field" : "field_issue_responsable" } }
+      ],
       "DO" : [
         { "flag_fetch_users_node" : {
             "USING" : { "flag" : "subscripcion_issue", "node" : [ "comment:node" ] },
@@ -35,6 +38,13 @@ function issue_features_default_rules_configuration() {
             ]
           }
         },
+        { "list_add" : {
+            "list" : [ "emails" ],
+            "item" : [ "comment:node:field-issue-responsable:mail" ],
+            "unique" : 1
+          }
+        },
+        { "list_remove" : { "list" : [ "emails" ], "item" : [ "comment:author:mail" ] } },
         { "drupalcl_send_mail" : {
             "emails" : [ "emails" ],
             "subject" : "[comment:name] ha realizado un comentario en el issue \\u0022[comment:node]\\u0022",
